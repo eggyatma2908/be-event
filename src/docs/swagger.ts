@@ -25,7 +25,7 @@ const doc = {
                 scheme: "bearer"
             }
         },
-        schemaLogin: {
+        schemas: {
             loginRequest: {
                 identifier: "eggy2908",
                 password: "123456"
