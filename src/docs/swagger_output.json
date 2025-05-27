@@ -18,6 +18,9 @@
   "paths": {
     "/auth/register": {
       "post": {
+        "tags": [
+          "Auth"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -28,27 +31,16 @@
           }
         },
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "fullName": {
-                    "example": "any"
-                  },
-                  "username": {
-                    "example": "any"
-                  },
-                  "email": {
-                    "example": "any"
-                  },
-                  "password": {
-                    "example": "any"
-                  },
-                  "confirmPassword": {
-                    "example": "any"
-                  }
-                }
+                "$ref": "#/components/schemas/registerRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/registerRequest"
               }
             }
           }
@@ -57,6 +49,9 @@
     },
     "/auth/login": {
       "post": {
+        "tags": [
+          "Auth"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -88,6 +83,9 @@
     },
     "/auth/user": {
       "get": {
+        "tags": [
+          "Auth"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -106,6 +104,37 @@
           }
         ]
       }
+    },
+    "/auth/activation": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/activationRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/activationRequest"
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -116,20 +145,60 @@
       }
     },
     "schemas": {
+      "registerRequest": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "example": "John Doe"
+          },
+          "username": {
+            "type": "string",
+            "example": "johndoe"
+          },
+          "email": {
+            "type": "string",
+            "example": "johndoe123@gmail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "Welcome123"
+          },
+          "confirmPassword": {
+            "type": "string",
+            "example": "Welcome123"
+          }
+        },
+        "xml": {
+          "name": "registerRequest"
+        }
+      },
       "loginRequest": {
         "type": "object",
         "properties": {
           "identifier": {
             "type": "string",
-            "example": "eggy2908"
+            "example": "johndoe"
           },
           "password": {
             "type": "string",
-            "example": "123456"
+            "example": "Welcome123"
           }
         },
         "xml": {
           "name": "loginRequest"
+        }
+      },
+      "activationRequest": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "abcd"
+          }
+        },
+        "xml": {
+          "name": "activationRequest"
         }
       }
     }

@@ -26,9 +26,19 @@ const doc = {
             }
         },
         schemas: {
+            registerRequest: {
+                fullName: "John Doe",
+                username: "johndoe",
+                email: "johndoe123@gmail.com",
+                password: "Welcome123",
+                confirmPassword: "Welcome123"
+            },
             loginRequest: {
-                identifier: "eggy2908",
-                password: "123456"
+                identifier: "johndoe",
+                password: "Welcome123"
+            },
+            activationRequest: {
+                code: "abcd"
             }
         }
     }
